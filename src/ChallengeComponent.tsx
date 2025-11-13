@@ -1,11 +1,8 @@
 import TaskBoard from "./components/TaskBoard";
 import { useEffect, useState } from "react";
-import { mockColumnConfig, mockTasks } from "./data/mockData";
 import { TaskService } from "./services/taskService";
 
 // To extend the task status (eg blocked), add it to the TaskStatus type.
-// helen: also think more because "Blocked" will probably have extra logic associated with it.
-
 export type TaskStatus = "TODO" | "IN_PROGRESS" | "DONE";
 
 export type Task = {
@@ -66,7 +63,6 @@ export function ChallengeComponent({
   }
 
   useEffect(() => {
-    // For now, have a timeout of 1 second to simulate an api FETCH call.
     async function loadData() {
       const [fetchedTasks, fetchedColumns] = await Promise.all([
         taskService.fetchTasks(),

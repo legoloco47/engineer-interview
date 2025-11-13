@@ -8,12 +8,13 @@ export interface TaskServiceInterface {
 
 export class TaskService implements TaskServiceInterface {
     async fetchTasks(): Promise<Task[]> {
-      // In production, this would be a real API call
+      // In production, this would be the real API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       return mockTasks;
     }
     
     async fetchColumns(): Promise<ColumnConfig[]> {
+      // In production, this would be the real API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       return mockColumnConfig;
     }
