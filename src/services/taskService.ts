@@ -1,5 +1,5 @@
 import { ColumnConfig, Task } from "../ChallengeComponent";
-import { mockColumnConfig, mockTasks } from "../test/mockData";
+import { mockColumnConfig, mockTasks } from "../data/mockData";
 
 export interface TaskServiceInterface {
     fetchTasks(): Promise<Task[]>;

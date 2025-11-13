@@ -1,6 +1,6 @@
 import TaskBoard from "./components/TaskBoard";
 import { useEffect, useState } from "react";
-import { mockColumnConfig, mockTasks } from "./test/mockData";
+import { mockColumnConfig, mockTasks } from "./data/mockData";
 import { TaskService } from "./services/taskService";
 
 // To extend the task status (eg blocked), add it to the TaskStatus type.
