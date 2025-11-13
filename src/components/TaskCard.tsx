@@ -3,15 +3,15 @@ import { Task } from '../ChallengeComponent';
 
 type TaskCardProps = {
     task: Task;
-    onMoveLeft: () => void;
-    onMoveRight: () => void;
+    onMoveLeft: (taskId: string) => void;
+    onMoveRight: (taskId: string) => void;
     canMoveLeft: boolean;
     canMoveRight: boolean;
 }
 
-function TaskCard({ task, onMoveLeft, onMoveRight, canMoveLeft, canMoveRight }) {
+function TaskCard({ task, onMoveLeft, onMoveRight, canMoveLeft, canMoveRight }: TaskCardProps) {
     return (
-      <div className="flex items-center justify-between p-4 bg-white rounded-xl shadow-md w-full gap-4">
+      <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-lg w-full gap-4">
         
         {/* LEFT BUTTON */}
         <button

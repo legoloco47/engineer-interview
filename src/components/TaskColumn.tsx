@@ -10,11 +10,12 @@ type TaskColumnProps = {
     canMoveLeft: boolean;
     canMoveRight: boolean;
 }
+
 function TaskColumn({ column, tasks, onMoveLeft, onMoveRight, canMoveLeft, canMoveRight }: TaskColumnProps) {
   return (
-    <div className='h-full w-full border border-blue-500'>
-        <h2 className='p-2 text-2xl text-center'>{column.title}</h2>
-        <div className='h-full w-full border border-green-500 gap-4 flex flex-col p-4'>
+    <div className="flex h-full w-full flex-col items-center rounded-[12px] border border-gray-300 bg-white shadow-lg px-8 py-6">
+        <h2 className='p-2 text-2xl text-center font-medium'>{column.title}</h2>
+        <div className='h-full w-full gap-4 flex flex-col p-4'>
             {tasks.map(task => (
                 <TaskCard 
                     key={task.id} 
