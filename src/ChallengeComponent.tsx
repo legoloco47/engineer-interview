@@ -59,7 +59,7 @@ export function ChallengeComponent({
   }
 
   function createTask(taskTitle: string) {
-    setTasks(prev => [...prev, { id: Date.now().toString(), title: taskTitle, status: "TODO" }]);
+    setTasks(prev => [...prev, { id: crypto.randomUUID(), title: taskTitle, status: "TODO" }]);
   }
 
   useEffect(() => {
