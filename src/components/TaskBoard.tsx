@@ -1,5 +1,5 @@
-import React from 'react'
-import { ColumnConfig, MoveTaskDirection, Task } from '../ChallengeComponent'
+import React, { useMemo } from 'react'
+import { ColumnConfig, MoveTaskDirection, Task, TaskStatus } from '../types'
 import TaskColumn, { TaskColumnLoading } from './TaskColumn'
 import TaskCreator from './TaskCreator';
 
@@ -12,6 +12,13 @@ type TaskBoardProps = {
 }
 
 function TaskBoard({ isLoading, columns, tasks, onMoveTask, onCreateTask }: TaskBoardProps) {
+  const tasksByStatus = useMemo(() => {
+    return tasks.reduce((acc, task) => {
+      acc[task.status] = [...(acc[task.status] || []), task];
+      return acc;
+    }, {} as Record<TaskStatus, Task[]>);
+  }, [tasks]);
+  
     return (
       <div id="task-board-container" className="h-full w-full overflow-x-auto overflow-y-hidden flex flex-col">
         <div className="flex flex-1 min-h-0 w-full flex-row justify-around gap-6 px-4 py-4">
@@ -23,7 +30,7 @@ function TaskBoard({ isLoading, columns, tasks, onMoveTask, onCreateTask }: Task
             >
               <TaskColumn
                 column={column}
-                tasks={tasks.filter(task => task.status === column.id)}
+                tasks={tasksByStatus[column.id] || []}
                 onMoveLeft={(taskId) => onMoveTask(taskId, 'LEFT')}
                 onMoveRight={(taskId) => onMoveTask(taskId, 'RIGHT')}
                 canMoveLeft={index > 0}

@@ -1,4 +1,4 @@
-import { ColumnConfig, Task } from "../ChallengeComponent";
+import { ColumnConfig, Task } from "../types";
 import { mockColumnConfig, mockTasks } from "../data/mockData";
 
 export interface TaskServiceInterface {

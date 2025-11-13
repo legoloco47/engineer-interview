@@ -1,81 +1,13 @@
 import TaskBoard from "./components/TaskBoard";
-import { useEffect, useState } from "react";
 import { TaskService } from "./services/taskService";
-
-// To extend the task status (eg blocked), add it to the TaskStatus type.
-export type TaskStatus = "TODO" | "IN_PROGRESS" | "DONE";
-
-export type Task = {
-  id: string;
-  title: string;
-  status: TaskStatus;
-};
-
-export type ColumnConfig = {
-  id: TaskStatus;
-  title: string;
-};
-
-export type MoveTaskDirection = "LEFT" | "RIGHT";
+import { useTaskBoard } from "./hooks/useTaskBoard";
 
 export function ChallengeComponent({ 
   taskService = new TaskService() 
 }: { 
   taskService?: TaskService 
 } = {}) {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [columns, setColumns] = useState<ColumnConfig[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  function moveTask(taskId: string, direction: MoveTaskDirection) {
-    const task = tasks.find(task => task.id === taskId);
-    if (!task) return;
-    let newStatus: TaskStatus = task.status;
-    if (direction === "LEFT") {
-      switch (task.status) {
-        case "IN_PROGRESS":
-          newStatus = "TODO";
-          break;
-        case "DONE":
-          newStatus = "IN_PROGRESS";
-          break;
-        default:
-          break;
-      }
-    } else if (direction === "RIGHT") {
-      switch (task.status) {
-        case "TODO":
-          newStatus = "IN_PROGRESS";
-          break;
-        case "IN_PROGRESS":
-          newStatus = "DONE";
-          break;
-        default:
-          break;
-      }
-    }
-
-    setTasks(prev => prev.map(task => task.id === taskId ? { ...task, status: newStatus } : task));
-  }
-
-  function createTask(taskTitle: string) {
-    setTasks(prev => [...prev, { id: crypto.randomUUID(), title: taskTitle, status: "TODO" }]);
-  }
-
-  useEffect(() => {
-    async function loadData() {
-      const [fetchedTasks, fetchedColumns] = await Promise.all([
-        taskService.fetchTasks(),
-        taskService.fetchColumns(),
-      ]);
-      
-      setTasks(fetchedTasks);
-      setColumns(fetchedColumns);
-      setIsLoading(false);
-    }
-    
-    loadData();
-  }, []);
+  const { tasks, columns, isLoading, moveTask, createTask } = useTaskBoard(taskService);
 
   return (
       <div id='task-board-parent-container' className='flex flex-col h-screen overflow-hidden w-full'>

@@ -1,4 +1,4 @@
-import { ColumnConfig, Task } from "../ChallengeComponent";
+import { ColumnConfig, Task } from "../types";
 
 export const mockTasks: Task[] = [
   { id: "1", title: "Mow the Lawn", status: "TODO" },

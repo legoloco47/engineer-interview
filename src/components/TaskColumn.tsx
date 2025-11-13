@@ -1,5 +1,5 @@
 import React from 'react'
-import { ColumnConfig, Task } from '../ChallengeComponent'
+import { ColumnConfig, Task } from '../types'
 import TaskCard from './TaskCard';
 
 type TaskColumnProps = {

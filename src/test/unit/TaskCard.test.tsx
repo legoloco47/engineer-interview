@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TaskCard from '../../components/TaskCard';
-import { Task } from '../../ChallengeComponent';
+import { Task } from '../../types';
 
 describe('TaskCard', () => {
   const mockTask: Task = {
