@@ -18,7 +18,7 @@ function TaskCard({ task, onMoveLeft, onMoveRight, canMoveLeft, canMoveRight }: 
           type="button"
           onClick={() => onMoveLeft(task.id)}
           disabled={!canMoveLeft}
-          aria-label="Move task left"
+          aria-label={`Move "${task.title}" left`}
           className={`
             w-10 h-10 rounded-md flex items-center justify-center
             text-white 
@@ -38,7 +38,7 @@ function TaskCard({ task, onMoveLeft, onMoveRight, canMoveLeft, canMoveRight }: 
           type="button"
           onClick={() => onMoveRight(task.id)}
           disabled={!canMoveRight}
-          aria-label="Move task right"
+          aria-label={`Move "${task.title}" right`}
           className={`
             w-10 h-10 rounded-md flex items-center justify-center
             text-white
