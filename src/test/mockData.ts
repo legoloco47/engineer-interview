@@ -7,7 +7,7 @@ export const mockTasks: Task[] = [
 ];
 
 export const mockColumnConfig: ColumnConfig[] = [
-  { id: "TODO", title: "Todo" },
+  { id: "TODO", title: "To Do" },
   { id: "IN_PROGRESS", title: "In Progress" },
   { id: "DONE", title: "Done" },
 ];
